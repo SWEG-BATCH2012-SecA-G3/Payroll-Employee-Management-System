@@ -1,9 +1,86 @@
-#include<iostream>
+#include <iostream>
+#include<iomanip>
 
 using namespace std;
 
+int choice;
+
+struct date{
+    int dd,mm,yyy;
+};
+
+struct payment{
+  float basicSalary;
+    float overTime;
+    float incomeTax;
+    float netPay;
+    };
+
+struct address{
+  string city, phoneNumber;
+};
+
+struct Employee{
+  string full_name, edu_level, category;
+  int age;
+  int phon_num, empId, experience;
+  //string category;
+  char sex;
+    date currentDate, startingDate;
+    payment pay;
+    address empAddress;
+};
+
+void menu();
 int main()
 {
+    system("cls");
+     cout<<"=======================================================\n";
+    cout<<"**********      Employee management system    **********\n";
+    cout<<"=======================================================\n";
 
-return 0;
+    do {
+
+    menu();
+
+    switch(choice){
+        case 1: // data in
+         break;
+        case 2: // data display
+             
+         break;
+        case 3: //data modify
+             
+          break;
+        case 4: // delete data
+            
+           break;
+        case 5: // search data
+            
+            break;
+        case 6: // sorting data
+            
+           break;
+
+         default : cout<<"ERROR: YOU ENTER UNKNOWN KEY....";
+         }
+         }while(choice!=0);
+
+
+    return 0;
+}
+void menu()
+{
+    cout<<"========================================\n";
+    cout<<"******what do you want to perform******* \n";
+    cout<<"========================================\n";
+
+    cout<<"enter 1 for add employees \n";
+    cout<<"enter 2 for display inputs \n";
+    cout<<"enter 3 for  update \n";
+    cout<<"enter 4 for delete \n";
+    cout<<"enter 5 for search by id \n";
+    cout<<"enter 6 for sort by salary \n";
+    cout<<"enter any key to exit \n";
+    cin>>choice;
 }
