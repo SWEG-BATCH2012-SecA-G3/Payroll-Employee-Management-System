@@ -63,7 +63,7 @@ int main()
              
           break;
         case 4: // delete data
-            
+               Delete(emp);
            break;
         case 5: // search data
             
@@ -144,4 +144,42 @@ Employee dataDisp(Employee *emp)
 
 
     return *emp;
+}
+
+void Delete(Employee* emp)
+{
+    if(total_emp!=0){
+      char select;
+   cout<<"\nPress 1 to delete all records !!\n";
+   cout<<"\nPress 2 to delete specific record !!\n";
+   cin>>select;
+      //select=getch();
+      if(select=='1'){
+    total_emp=0;
+    cout<<"\nAll records are deleted...!!! \n";
+      }
+      else if(select=='2'){
+    cout<<"\nEnter the id number of an employee you want to delete : ";
+          cin>>id;
+  for(int i=0;i<total_emp;i++){
+   if(id==emp[i].empId){
+  emp[i].full_name="--";
+  emp[i].age=0;
+  emp[i].pay.basicSalary=0;
+  emp[i].sex='-';
+  emp[i].startingDate.dd=0;
+  emp[i].startingDate.mm=0;
+  emp[i].startingDate.yyy=0;
+  emp[i].pay.overTime=0;
+  emp[i].empAddress.city="--";
+  emp[i].empAddress.phoneNumber="---";
+  //emp[i].edu_level="--";
+  //emp[i].id="--";
+      }
+   }
+
+   }
+    }
+    else
+  cout<<"\nYour record is empty \n";
 }
