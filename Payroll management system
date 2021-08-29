@@ -30,9 +30,14 @@ struct Employee{
     payment pay;
     address empAddress;
 };
+//function diclation
+
 Employee dataIn(Employee emp[]);
 Employee dataDisp(Employee *emp);
+void update(Employee *emp);
+void Delete(Employee* emp);
 void menu();
+
 
 int main()
 {
@@ -60,7 +65,7 @@ int main()
               dataDisp(emp);
          break;
         case 3: //data modify
-             
+             update(emp);
           break;
         case 4: // delete data
                Delete(emp);
@@ -183,3 +188,69 @@ void Delete(Employee* emp)
     else
   cout<<"\nYour record is empty \n";
 }
+
+//upding function to change specific item by searching by employee id
+
+void update(Employee *emp)
+{ if(total_emp!=0){
+    cout<<"\nEnter the id number of an employee you want to update : ";
+      cin>>id;
+    for(int i=0;i<total_emp;i++){
+	 if(id==emp[i].empId){
+       for (int i=total_emp; i<emp_num + total_emp; i++){
+    cout<< "insert the detail of Employee : \n";
+      emp[i].empId = i+1;
+    cout<< "Enter the name of the user: "<< endl;
+      cin.ignore();
+      getline(cin,emp[i].full_name);
+    cout<<"enter age : ";
+      cin>>emp[i].age;
+a: cout<<"enter sex 'm' or 'f' : ";
+      cin>>emp[i].sex;
+      if(emp[i].sex!='m' && emp[i].sex!='f'){
+        cout<<"invalid input \n";
+        goto a;}
+    cout<< "Enter your start date in the organization for employee: "<< emp[i].empId;
+    cout<< "\n date: ";
+      cin>>emp[i].startingDate.dd;
+    cout<< "\n month: ";
+      cin>> emp[i].startingDate.mm;
+    cout<< "\n year: ";
+      cin>> emp[i].startingDate.yyy;
+    cout<<"Basic salary : ";
+       cin>>emp[i].pay.basicSalary;
+    cout<<"over time : ";
+      cin>>emp[i].pay.overTime;
+    cout<<"address : ";
+      cin>>emp[i].empAddress.city;
+    cout<<"phone number : ";
+      cin>>emp[i].empAddress.phoneNumber;
+    cout<<"\nSuccessfully Updated!!\n";
+	 }
+	 }
+}
+}
+else
+    cout<<"\nYour record is empty \n";
+}
+
+//searching function work by employee id 
+
+void Search(Employee *emp)
+{
+    if(total_emp!=0){
+    cout<<"\nEnter the id number of an employee you want to search : ";
+      cin>>id;
+
+    cout<<setw(2)<<"ID"<<setw(15)<<"Name"<<setw(15)<< "SEX"<<setw(15)<<"AGE"<< setw(15)<<"EXPERIENCE"<<setw(15)<<"SALARY"<<endl;
+    for(int i=0;i<total_emp;i++){
+	 if(id==emp[i].empId){
+    cout<<emp[i].empId<< setw(15)<<emp[i].full_name<< setw(15)<<emp[i].sex<< setw(15)<<emp[i].age<<setw(15)
+    <<emp[i].pay.basicSalary<<endl;
+	 }
+}
+    }
+    else
+        cout<<"no recored is found \n";
+}
+
