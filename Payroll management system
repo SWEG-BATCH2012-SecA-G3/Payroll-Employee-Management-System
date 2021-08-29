@@ -31,6 +31,7 @@ struct Employee{
     address empAddress;
 };
 Employee dataIn(Employee emp[]);
+Employee dataDisp(Employee *emp);
 void menu();
 
 int main()
@@ -56,7 +57,7 @@ int main()
            dataIn(emp);
          break;
         case 2: // data display
-             
+              dataDisp(emp);
          break;
         case 3: //data modify
              
@@ -128,4 +129,19 @@ void menu()
     cout<<"enter 6 for sort by salary \n";
     cout<<"enter any key to exit \n";
     cin>>choice;
+}
+
+Employee dataDisp(Employee *emp)
+{
+    cout<<setw(2)<<"ID"<<setw(15)<<"Name"<<setw(15)<< "SEX"<<setw(15)<<"AGE"<< setw(15)<<"EXPERIENCE"<<setw(15)<<"SALARY"<<endl;
+
+    for (int i=0; i<total_emp; i++){
+    emp[i].empId = i+1;
+    //emp[i].experience =currentDate.yy - emp[i].Date.yy;
+    cout<<emp[i].empId<< setw(15)<<emp[i].full_name<< setw(15)<<emp[i].sex<< setw(15)<<emp[i].age<<setw(15)
+    <<emp[i].pay.basicSalary<<endl;
+    }
+
+
+    return *emp;
 }
