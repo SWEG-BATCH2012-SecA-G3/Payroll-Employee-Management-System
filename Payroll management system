@@ -34,6 +34,7 @@ struct Employee{
 
 Employee dataIn(Employee emp[]);
 Employee dataDisp(Employee *emp);
+void Search(Employee *emp);
 void update(Employee *emp);
 void Delete(Employee* emp);
 void menu();
@@ -71,7 +72,7 @@ int main()
                Delete(emp);
            break;
         case 5: // search data
-            
+             Search(emp);
             break;
         case 6: // sorting data
             
