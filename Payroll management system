@@ -2,7 +2,7 @@
 #include<iomanip>
 
 using namespace std;
-int emp_num,  total_emp=0;
+int emp_num, id ,total_emp=0;
 int choice;
 
 struct date{
@@ -38,7 +38,6 @@ void Search(Employee *emp);
 void update(Employee *emp);
 void Delete(Employee* emp);
 void menu();
-
 
 int main()
 {
