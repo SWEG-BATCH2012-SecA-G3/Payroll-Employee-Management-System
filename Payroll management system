@@ -29,7 +29,7 @@ struct Employee{
     date currentDate, startingDate;
     payment pay;
     address empAddress;
-};
+}temp;
 //function diclation
 
 Employee dataIn(Employee emp[]);
@@ -74,7 +74,8 @@ int main()
              Search(emp);
             break;
         case 6: // sorting data
-            
+            Sort(emp);
+            cout<< "your command is done successfully \n display the data to see rank of the employee\n";
            break;
 
          default : cout<<"ERROR: YOU ENTER UNKNOWN KEY....";
@@ -252,5 +253,19 @@ void Search(Employee *emp)
     }
     else
         cout<<"no recored is found \n";
+}
+
+Employee Sort(Employee *emp)
+{
+ for(int i=0; i<total_emp; i++){
+    for(int j=total_emp - 1; j>=i; j--){
+            if (emp[i].pay.basicSalary<emp[j].pay.basicSalary){
+             temp = emp[i];
+            emp[i] = emp[j];
+            emp[j] = temp;
+            }
+        }
+    }
+ return *emp;
 }
 
