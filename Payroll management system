@@ -46,7 +46,7 @@ int main()
     cout<<"**********      Employee management system    **********\n";
     cout<<"=======================================================\n";
     
-    cout<<"how many employs want to sign up ?\n";
+    cout<<"\thow many employs want to sign up ?\n";
          cin>>emp_num;
     Employee emp[emp_num];
       dataIn(emp);
@@ -194,7 +194,7 @@ void Delete(Employee* emp)
 
 void update(Employee *emp)
 { if(total_emp!=0){
-    cout<<"\nEnter the id number of an employee you want to update : ";
+    cout<<"\n\tEnter the id number of an employee you want to update : ";
       cin>>id;
     for(int i=0;i<total_emp;i++){
 	 if(id==emp[i].empId){
