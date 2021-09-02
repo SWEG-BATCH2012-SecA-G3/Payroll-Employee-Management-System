@@ -4,11 +4,12 @@
 using namespace std;
 int emp_num, id ,total_emp=0;
 int choice;
-
+//diclaring the stucture date
 struct date{
     int dd,mm,yyy;
 };
 
+//diclaring the structure paymenent
 struct payment{
   float basicSalary;
     float overTime;
@@ -16,10 +17,11 @@ struct payment{
     float netPay;
     };
 
+//diclaring the structure address
 struct address{
   string city, phoneNumber;
 };
-
+//diclaring the variable Employee
 struct Employee{
   string full_name, edu_level, category;
   int age;
@@ -54,7 +56,7 @@ int main()
     do {
 
     menu();
-
+//
     switch(choice){
         case 1: // data in
         cout<<"how many people do you want to add \n";
