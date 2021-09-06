@@ -43,6 +43,7 @@ void update(Employee emp[]);
 void Delete(Employee emp[]);
 Employee Sort(Employee emp[]);
 void Rank(Employee emp[]);
+void pension(Employee emp[]);
 void statstics(Employee emp[]);
 Employee netpayment(Employee emp[]);
 void Expi(Employee emp[]);
@@ -125,35 +126,73 @@ system("cls");
 
 Employee dataIn(Employee *emp)
 {
+    cout<<"\t\t\thow many people do you want to add ?* ";
+    cin>>emp_num;
+    system("cls");
 
+    cout<< "--------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+    cout<< "------------------------------------------------------------------------ ADD RECORD ";
+    cout<< "-------------------------------------------------------------------------\n";
     for (int i=total_emp; i<emp_num + total_emp; i++){
-    cout<< "insert the detail of Employee : \n";
-      emp[i].empId = i+1;
+    cout<< "Insert the detail of Employee : \n";
     cout<< "Enter the name of the user: "<< endl;
+    cin.ignore();
+    cin.getline(emp[i].full_name,30);
+    cout<<"enter id : ";
+    cin>>emp[i].empId;
+    cout<<"Enter age : ";
+    cin>>emp[i].age;
+sex: cout<<"Enter sex 'm' or 'f' : ";
+    cin>>emp[i].sex;
+    if(emp[i].sex!='m' && emp[i].sex!='f'){
+        cout<<"Invalid input \n";
+        goto sex;
+        }
+    cout<<"insert employees education level from these \nchoice: \n1.diploma \n2.degree \n3.masters \n4.phd \n5.professor \nEnter your choice: ";
+    cin>>emp[i].eduLevel;
+//setting employees salary based on education level
+    if(emp[i].eduLevel==1){emp[i].pay.basicSalary=1500;}
+    if(emp[i].eduLevel==2){emp[i].pay.basicSalary=2500;}
+    if(emp[i].eduLevel==3){emp[i].pay.basicSalary=3500;}
+    if(emp[i].eduLevel==4){emp[i].pay.basicSalary=5000;}
+    if(emp[i].eduLevel==5){emp[i].pay.basicSalary=7000;}
+
+      cout<<"enter employees category from this( full time, part time, seasonal) : ";
       cin.ignore();
-      getline(cin,emp[i].full_name);
-    cout<<"enter age : ";
-      cin>>emp[i].age;
-a: cout<<"enter sex 'm' or 'f' : ";
-      cin>>emp[i].sex;
-      if(emp[i].sex!='m' && emp[i].sex!='f'){
-        cout<<"invalid input \n";
-        goto a;}
-    cout<< "Enter your start date in the organization for employee: "<< emp[i].empId;
-    cout<< "\n date: ";
-      cin>>emp[i].startingDate.dd;
-    cout<< "\n month: ";
-      cin>> emp[i].startingDate.mm;
-    cout<< "\n year: ";
-      cin>> emp[i].startingDate.yyy;
-    cout<<"Basic salary : ";
-       cin>>emp[i].pay.basicSalary;
+      cin.getline(emp[i].empCatagory,30);
+edate: cout<< "Enter your start date in the organization for employee: ";
+       d: cout<< "\n Date: ";
+       cin>>emp[i].startingDate.dd;
+       if (emp[i].startingDate.dd <1 || emp[i].startingDate.dd >31) {
+       cout<< "Please insert the date correctly\n";
+       goto d;
+       }
+       m: cout<< "\n Month: ";
+       cin>> emp[i].startingDate.mm;
+       if (emp[i].startingDate.mm <1 || emp[i].startingDate.mm >12){
+       cout<< "Please insert the date correctly\n";
+       goto m;
+       }
+       y: cout<< "\n Year: ";
+       cin>> emp[i].startingDate.yy;
+       if (emp[i].startingDate.yy <1940){
+       cout<< "Please insert the date correctly\n";
+       goto y;
+       }
+
+//checking whether the start day is greater than or not the current date
+if((((emp[i].currentDate.dd/12 + emp[i].currentDate.yy*12 + emp[i].currentDate.mm) -
+     (emp[i].startingDate.dd/12 + emp[i].startingDate.yy*12 + emp[i].startingDate.mm))/12)<0)
+             {
+                cout<<"insert the correct date \n";
+                    goto edate;
+                    }
     cout<<"over time : ";
-      cin>>emp[i].pay.overTime;
+    cin>>emp[i].pay.overTime;
     cout<<"address : ";
-      cin>>emp[i].empAddress.city;
+    cin>>emp[i].empAddress.city;
     cout<<"phone number : ";
-      cin>>emp[i].empAddress.phoneNumber;
+    cin>>emp[i].empAddress.phoneNumber;
     }
 
     total_emp += emp_num;
@@ -373,6 +412,21 @@ Employee netpayment(Employee *emp){
     emp[i].pay.netPay = (emp[i].pay.basicSalary + (emp[i].pay.overTime * 200) - emp[i].pay.incomeTax - (emp[i].pay.basicSalary*0.07));
   }
   return *emp;
+}
+
+void pension(Employee emp[])
+{
+  Expi(emp);
+    //pension = salary * 2% * year of pensionable list(experience in organization)
+  cout<<"***************************pension list************************************\n";
+    cout<<"NAME"<<setw(15)<<"ID"<<setw(15)<<"SALARY BERFORE RETAIRMENT"<<setw(15)<<"SALARY AFTER RETAIRMENT"<<setw(15)
+    <<"EXPERIENCE"<<endl;
+    for(int i=0; i<total_emp; i++){
+      if(emp[i].age>=65){
+        cout<<emp[i].full_name<<setw(15)<<emp[i].empId<<setw(15)<<emp[i].pay.basicSalary<<setw(25)
+        <<emp[i].pay.basicSalary*0.02*emp[i].experience<<setw(15)<<emp[i].experience<<endl;
+        }
+    }
 }
 
 void statstics(Employee *emp){
