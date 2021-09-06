@@ -1,10 +1,14 @@
 #include <iostream>
 #include<iomanip>
 #include <ctime>
+#include<cstdlib>
 
 using namespace std;
 int emp_num, id ,total_emp=0;
 int choice;
+time_t now = time(0);
+tm *ltm = localtime(&now);
+
 //diclaring the stucture date
 struct date{
     float dd,mm,yyy;
