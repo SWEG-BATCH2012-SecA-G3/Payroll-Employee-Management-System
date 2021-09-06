@@ -11,7 +11,7 @@ tm *ltm = localtime(&now);
 
 //diclaring the stucture date
 struct date{
-    float dd,mm,yyy;
+    float dd,mm,yy;
 };
 
 //diclaring the structure paymenent
@@ -41,7 +41,7 @@ struct Employee{
 //function diclation
 
 Employee dataIn(Employee emp[]);
-Employee dataDisp(Employee emp[]);
+void dataDisp(Employee emp[]);
 void Search(Employee emp[]);
 void update(Employee emp[]);
 void Delete(Employee emp[]);
