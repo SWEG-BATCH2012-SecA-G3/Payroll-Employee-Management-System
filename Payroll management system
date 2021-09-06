@@ -29,7 +29,7 @@ struct Employee{
   int phon_num, empId, experience;
   //string category;
   char sex;
-    date currentDate, startingDate;
+     date currentDate{ltm->tm_mday, 1 + ltm->tm_mon, 1900 + ltm->tm_year}, startingDate;
     payment pay;
     address empAddress;
 }temp;
@@ -41,6 +41,8 @@ void Search(Employee *emp);
 void update(Employee *emp);
 void Delete(Employee* emp);
 Employee Sort(Employee emp[]);
+void Rank(Employee emp[]);
+void Expi(Employee emp[]);
 void menu();
 
 int main()
@@ -271,6 +273,51 @@ void Search(Employee *emp)
     }
     else
         cout<<"no recored is found \n";
+}
+void Rank(Employee emp[])
+{
+    Expi(emp);
+    int i;
+    float max_salary=0;
+    float max_experience=0;
+    float salary_weight, experience_weight;
+
+//sorting maximum salary
+    for( i=0; i<total_emp; i++){
+        if(emp[i].pay.basicSalary>max_salary){
+            max_salary=emp[i].pay.basicSalary;
+        }
+//sorting maximum experience
+        if(emp[i].experience>max_experience){
+            max_experience=emp[i].experience;
+        }
+//employees level formula
+    salary_weight=(emp[i].pay.basicSalary/max_salary)*40;
+    experience_weight=(emp[i].experience/max_experience)*60;
+    emp[i].emp_level=salary_weight + experience_weight;
+    }
+
+    for (int i=0; i<total_emp; i++){
+    if(emp[i].emp_level>=80 && emp[i].emp_level<=100 ){
+          emp[i].level = "first level";
+    }
+    else if(emp[i].emp_level>=40 && emp[i].emp_level<=79){
+          emp[i].level = "second level";
+    }
+    else if(emp[i].emp_level>=10 && emp[i].emp_level<=39){
+          emp[i].level = "third lever";
+    }
+    else
+      emp[i].level = "no level";
+  }
+}
+
+void Expi(Employee emp[]){
+//   computing experience
+    for(int i=0; i<total_emp; i++){
+    emp[i].experience=((emp[i].currentDate.yy*12 + emp[i].currentDate.mm) -
+                       (emp[i].startingDate.yy*12 + emp[i].startingDate.mm))/12;
+         }
 }
 
 Employee Sort(Employee *emp)
