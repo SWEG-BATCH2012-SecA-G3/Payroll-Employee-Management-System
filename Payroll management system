@@ -213,47 +213,86 @@ void Delete(Employee* emp)
 //upding function to change specific item by searching by employee id
 
 void update(Employee *emp)
-{ if(total_emp!=0){
-    cout<<"\n\tEnter the id number of an employee you want to update : ";
-      cin>>id;
+{
+    if(total_emp!=0){
+    cout<<"\nEnter the id number of an employee you want to update : ";
+    cin>>id;
+    int j;
     for(int i=0;i<total_emp;i++){
-	 if(id==emp[i].empId){
-       for (int i=total_emp; i<emp_num + total_emp; i++){
-    cout<< "insert the detail of Employee : \n";
-      emp[i].empId = i+1;
-    cout<< "Enter the name of the user: "<< endl;
-      cin.ignore();
-      getline(cin,emp[i].full_name);
-    cout<<"enter age : ";
-      cin>>emp[i].age;
-a: cout<<"enter sex 'm' or 'f' : ";
-      cin>>emp[i].sex;
-      if(emp[i].sex!='m' && emp[i].sex!='f'){
-        cout<<"invalid input \n";
-        goto a;}
-    cout<< "Enter your start date in the organization for employee: "<< emp[i].empId;
-    cout<< "\n date: ";
-      cin>>emp[i].startingDate.dd;
-    cout<< "\n month: ";
-      cin>> emp[i].startingDate.mm;
-    cout<< "\n year: ";
-      cin>> emp[i].startingDate.yyy;
-    cout<<"Basic salary : ";
-       cin>>emp[i].pay.basicSalary;
-    cout<<"over time : ";
-      cin>>emp[i].pay.overTime;
-    cout<<"address : ";
-      cin>>emp[i].empAddress.city;
-    cout<<"phone number : ";
-      cin>>emp[i].empAddress.phoneNumber;
-    cout<<"\nSuccessfully Updated!!\n";
-	 }
-	 }
-}
-}
-else
+	          if(id==emp[i].empId){
+                j=i;
+            }
+        }  
+               cout<< "insert the detail of Employee : \n";
+               cout<< "Enter the name of the user: "<< endl;
+               cin.ignore();
+               cin.getline(emp[j].full_name,30);
+               cout<<"enter id : ";
+               cin>>emp[j].empId;
+               cout<<"enter age : ";
+               cin>>emp[j].age;
+               sex: cout<<"enter sex 'm' or 'f' : ";
+               cin>>emp[j].sex;
+               if(emp[j].sex!='m' && emp[j].sex!='f'){
+                    cout<<"invalid input \n";
+                    goto sex;
+                    }
+                
+                cout<<"insert employees education level from these(choice: 1.diploma \n2.degree \n3.masters \n4.phd \n5.professor \nEnter your choice: ";
+                cin>>emp[j].eduLevel;
+                //setting employees salary based on education level
+                if(emp[j].eduLevel==1)
+                    {emp[j].pay.basicSalary=1500;}
+                else if(emp[j].eduLevel==2)
+                    {emp[j].pay.basicSalary=2500;}
+                else if(emp[j].eduLevel==3)
+                    {emp[j].pay.basicSalary=3500;}
+                else if(emp[j].eduLevel==4)
+                    {emp[j].pay.basicSalary=5000;}
+                else if(emp[j].eduLevel==5)
+                    {emp[j].pay.basicSalary=7000;}
+                
+
+                cout<<"enter employees category from this( full time, part time, seasonal) : ";
+                cin.ignore();
+                cin.getline(emp[j].empCatagory,30);
+          edate: cout<< "Enter your start date in the organization for employee: ";
+       d: cout<< "\n Date: ";
+       cin>>emp[j].startingDate.dd;
+       if (emp[j].startingDate.dd <1 || emp[j].startingDate.dd >31) {
+       cout<< "Please insert the date correctly\n";
+       goto d;
+       }
+       m: cout<< "\n Month: ";
+       cin>> emp[j].startingDate.mm;
+       if (emp[j].startingDate.mm <1 || emp[j].startingDate.mm >12){
+       cout<< "Please insert the date correctly\n";
+       goto m;
+       }
+       y: cout<< "\n Year: ";
+       cin>> emp[j].startingDate.yy;
+       if (emp[j].startingDate.yy <1940){
+       cout<< "Please insert the date correctly\n";
+       goto y;
+       }
+                //checking whether the start day is greater than or not the current day
+                if((((emp[j].currentDate.dd/12 + emp[j].currentDate.yy*12 + emp[j].currentDate.mm) -
+                      (emp[j].startingDate.dd/12 + emp[j].startingDate.yy*12 + emp[j].startingDate.mm))/12)<0){
+                          cout<<"insert the correct day \n";
+                          goto edate;
+                            }
+
+                cout<<"over time : ";
+                cin>>emp[j].pay.overTime;
+                cout<<"address : ";
+                cin>>emp[j].empAddress.city;
+                cout<<"phone number : ";
+                cin>>emp[j].empAddress.phoneNumber;
+                cout<<"\nSuccessfully Updated!!\n";
+	     }
+    else
     cout<<"\nYour record is empty \n";
-}
+  }
 
 //searching function work by employee id 
 
