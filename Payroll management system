@@ -157,19 +157,24 @@ a: cout<<"enter sex 'm' or 'f' : ";
     return *emp;
 }
 
-Employee dataDisp(Employee *emp)
+void dataDisp(Employee *emp)
 {
-    cout<<setw(2)<<"ID"<<setw(15)<<"Name"<<setw(15)<< "SEX"<<setw(15)<<"AGE"<< setw(15)<<"EXPERIENCE"<<setw(15)<<"SALARY"<<endl;
+  system("cls");
+  Rank(emp);
+  netpayment(emp);
+  Expi(emp);
+  cout<< "--------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+    cout<< "------------------------------------------------------------------------ DISPLAY RECORD ";
+    cout<< "-------------------------------------------------------------------------\n";
 
+    cout<<"NAME"<<setw(32)<<"ID"<<setw(15)<< "SEX"<<setw(15)<<"AGE"<<setw(15)<<"CATEGORY"<<setw(15)<<"SALARY"
+    <<setw(15)<<"EXPERIENCE"<<setw(15)<< "LEVEL"<<setw(15)<< "NET PAY"<<endl;
+    
     for (int i=0; i<total_emp; i++){
-    emp[i].empId = i+1;
-    //emp[i].experience =currentDate.yy - emp[i].Date.yy;
-    cout<<emp[i].empId<< setw(15)<<emp[i].full_name<< setw(15)<<emp[i].sex<< setw(15)<<emp[i].age<<setw(15)
-    <<emp[i].pay.basicSalary<<endl;
+    cout<<emp[i].full_name<< setw(23)<<emp[i].empId<< setw(15)<<emp[i].sex<< setw(15)<<emp[i].age<<setw(15)<<emp[i].empCatagory
+    <<setw(15)<<emp[i].pay.basicSalary<<setw(15)<<emp[i].experience<<setw(15)<<emp[i].level<<setw(15)<<emp[i].pay.netPay<<endl;
     }
 
-
-    return *emp;
 }
 
 void Delete(Employee* emp)
