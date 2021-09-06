@@ -48,42 +48,7 @@ int main()
     menu();
     return 0;
 }
-Employee dataIn(Employee *emp)
-{
 
-    for (int i=total_emp; i<emp_num + total_emp; i++){
-    cout<< "insert the detail of Employee : \n";
-      emp[i].empId = i+1;
-    cout<< "Enter the name of the user: "<< endl;
-      cin.ignore();
-      getline(cin,emp[i].full_name);
-    cout<<"enter age : ";
-      cin>>emp[i].age;
-a: cout<<"enter sex 'm' or 'f' : ";
-      cin>>emp[i].sex;
-      if(emp[i].sex!='m' && emp[i].sex!='f'){
-        cout<<"invalid input \n";
-        goto a;}
-    cout<< "Enter your start date in the organization for employee: "<< emp[i].empId;
-    cout<< "\n date: ";
-      cin>>emp[i].startingDate.dd;
-    cout<< "\n month: ";
-      cin>> emp[i].startingDate.mm;
-    cout<< "\n year: ";
-      cin>> emp[i].startingDate.yyy;
-    cout<<"Basic salary : ";
-       cin>>emp[i].pay.basicSalary;
-    cout<<"over time : ";
-      cin>>emp[i].pay.overTime;
-    cout<<"address : ";
-      cin>>emp[i].empAddress.city;
-    cout<<"phone number : ";
-      cin>>emp[i].empAddress.phoneNumber;
-    }
-
-    total_emp += emp_num;
-    return *emp;
-}
 void menu()
 {
 system("cls");
@@ -151,6 +116,43 @@ system("cls");
         goto menustart;
         a: system("exit");
         }
+}
+
+Employee dataIn(Employee *emp)
+{
+
+    for (int i=total_emp; i<emp_num + total_emp; i++){
+    cout<< "insert the detail of Employee : \n";
+      emp[i].empId = i+1;
+    cout<< "Enter the name of the user: "<< endl;
+      cin.ignore();
+      getline(cin,emp[i].full_name);
+    cout<<"enter age : ";
+      cin>>emp[i].age;
+a: cout<<"enter sex 'm' or 'f' : ";
+      cin>>emp[i].sex;
+      if(emp[i].sex!='m' && emp[i].sex!='f'){
+        cout<<"invalid input \n";
+        goto a;}
+    cout<< "Enter your start date in the organization for employee: "<< emp[i].empId;
+    cout<< "\n date: ";
+      cin>>emp[i].startingDate.dd;
+    cout<< "\n month: ";
+      cin>> emp[i].startingDate.mm;
+    cout<< "\n year: ";
+      cin>> emp[i].startingDate.yyy;
+    cout<<"Basic salary : ";
+       cin>>emp[i].pay.basicSalary;
+    cout<<"over time : ";
+      cin>>emp[i].pay.overTime;
+    cout<<"address : ";
+      cin>>emp[i].empAddress.city;
+    cout<<"phone number : ";
+      cin>>emp[i].empAddress.phoneNumber;
+    }
+
+    total_emp += emp_num;
+    return *emp;
 }
 
 Employee dataDisp(Employee *emp)
