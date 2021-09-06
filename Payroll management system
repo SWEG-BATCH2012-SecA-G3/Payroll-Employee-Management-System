@@ -1,5 +1,6 @@
 #include <iostream>
 #include<iomanip>
+#include <ctime>
 
 using namespace std;
 int emp_num, id ,total_emp=0;
@@ -39,52 +40,12 @@ Employee dataDisp(Employee *emp);
 void Search(Employee *emp);
 void update(Employee *emp);
 void Delete(Employee* emp);
+Employee Sort(Employee emp[]);
 void menu();
 
 int main()
 {
-    system("cls");
-     cout<<"=======================================================\n";
-    cout<<"**********      Employee management system    **********\n";
-    cout<<"=======================================================\n";
-    
-    cout<<"\thow many employs want to sign up ?\n";
-         cin>>emp_num;
-    Employee emp[emp_num];
-      dataIn(emp);
-
-    do {
-
     menu();
-//
-    switch(choice){
-        case 1: // data in
-        cout<<"how many people do you want to add \n";
-                  cin>>emp_num;
-           dataIn(emp);
-         break;
-        case 2: // data display
-              dataDisp(emp);
-         break;
-        case 3: //data modify
-             update(emp);
-          break;
-        case 4: // delete data
-               Delete(emp);
-           break;
-        case 5: // search data
-             Search(emp);
-            break;
-        case 6: // sorting data
-            Sort(emp);
-            cout<< "your command is done successfully \n display the data to see rank of the employee\n";
-           break;
-
-         default : cout<<"ERROR: YOU ENTER UNKNOWN KEY....";
-         }
-         }while(choice!=0);
-
-
     return 0;
 }
 Employee dataIn(Employee *emp)
@@ -125,18 +86,71 @@ a: cout<<"enter sex 'm' or 'f' : ";
 }
 void menu()
 {
-    cout<<"========================================\n";
-    cout<<"******what do you want to perform******* \n";
-    cout<<"========================================\n";
-
-    cout<<"enter 1 for add employees \n";
-    cout<<"enter 2 for display inputs \n";
-    cout<<"enter 3 for  update \n";
-    cout<<"enter 4 for delete \n";
-    cout<<"enter 5 for search by id \n";
-    cout<<"enter 6 for sort by salary \n";
-    cout<<"enter any key to exit \n";
+system("cls");
+    menustart:
+    
+    Employee emp[5000];
+    
+    cout<< "\t\t\t******************************************************************\n";
+    cout<< "\t\t\t//////////     Employee management system         ///////////////\n";
+    cout<< "\t\t\t******************************************************************\n";
+    
+    cout<<"\t\t\t1.Add Record\n";
+    cout<<"\t\t\t2.Display Record\n";
+    cout<<"\t\t\t3.Modify Record\n";
+    cout<<"\t\t\t4.Delete Record\n";
+    cout<<"\t\t\t5.Search Record\n";
+    cout<<"\t\t\t6.Sort record\n";
+    cout<<"\t\t\t7.Statstics \n";
+    cout<<"\t\t\t8.Pension Employees \n";
+    cout<<"\t\t\t0.Exit \n";
+    cout<< "\t\t\tchoice option:[1/2/3/4/5/6/7/8/0]\n";
+    cout<< "\t\t\tEnter your choice: ";
+    int choice;
     cin>>choice;
+
+    switch(choice){
+        case 1:
+             dataIn(emp);
+             system("cls");
+             goto menustart;
+             break;
+        case 2:
+             dataDisp(emp);
+             break;
+        case 3:
+             update(emp);
+             break;
+        case 4:
+            Delete(emp);
+            break;
+        case 5:
+            Search(emp);
+            break;
+        case 6:
+            Sort(emp);
+            cout<< "\t\t\tyour command is done successfully \n display the data to see rank of the employee\n";
+            break;
+        case 7:
+           statstics(emp);
+            break;
+        case 8:
+             pension(emp);
+             break; 
+        case 0:
+            goto a;
+            break;
+         default : cout<<"Invalid choice...Try again...";
+         }
+        cout<< "\n\t\t\tdo you want to continue? y/n: ";
+        char menus;
+        cin>> menus;
+        if (menus == 'y' || menus == 'Y'){
+        system("cls");
+        cout<< endl<<endl;
+        goto menustart;
+        a: system("exit");
+        }
 }
 
 Employee dataDisp(Employee *emp)
